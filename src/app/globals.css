@@ -1,0 +1,108 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 10% 98%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 244 80% 64%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 212 100% 68%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 244 80% 64%;
+    --radius: 1.5rem;
+  }
+
+  .dark {
+    --background: 255 15% 4%;
+    --foreground: 0 0% 98%;
+    --card: 255 15% 6%;
+    --card-foreground: 0 0% 98%;
+    --popover: 255 15% 8%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 244 80% 64%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 255 15% 10%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 255 15% 12%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 212 100% 68%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 255 15% 12%;
+    --input: 255 15% 12%;
+    --ring: 244 80% 64%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  body {
+    @apply bg-background text-foreground transition-colors duration-500 overflow-x-hidden;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    overscroll-behavior-y: none;
+    scroll-behavior: smooth;
+  }
+}
+
+.glass {
+  @apply bg-card/40 backdrop-blur-3xl border border-white/10 dark:border-white/5 shadow-2xl;
+  transition: background 0.3s ease, border 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass:hover {
+  @apply bg-card/60 border-white/20;
+}
+
+.bg-mesh {
+  background: 
+    radial-gradient(at 0% 0%, hsla(244, 80%, 64%, 0.15) 0, transparent 50%),
+    radial-gradient(at 50% 0%, hsla(212, 100%, 68%, 0.1) 0, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(244, 80%, 64%, 0.15) 0, transparent 50%);
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-primary/20 rounded-full hover:bg-primary/40;
+}
+
+/* Remove forced app layout constraints */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
